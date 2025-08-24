@@ -1,105 +1,93 @@
 # -*- coding: utf-8 -*-
 # file: setup.py
-# time: 2021/4/22 0022
-# author: YANG, HENG <hy345@exeter.ac.uk> (杨恒)
-# github: https://github.com/yangheng95
-# Copyright (C) 2021. All Rights Reserved.
-
 from pathlib import Path
-
+import re
 from setuptools import setup, find_packages
 
-from pyabsa import __name__, __version__
+ROOT = Path(__file__).parent.resolve()
+README = (ROOT / "README.md").read_text(encoding="utf-8")
 
-cwd = Path(__file__).parent
-long_description = (cwd / "README.md").read_text(encoding="utf8")
+def read_version():
+    """Parse __version__ from pyabsa/__init__.py without importing the package."""
+    init_py = (ROOT / "pyabsa" / "__init__.py").read_text(encoding="utf-8")
+    m = re.search(r"^__version__\s*=\s*['\"]([^'\"]+)['\"]", init_py, re.M)
+    if not m:
+        raise RuntimeError("Cannot find __version__ in pyabsa/__init__.py")
+    return m.group(1)
 
-extras = {}
-# Packages required for installing docs.
-extras["docs"] = [
-    "recommonmark",
-    "nbsphinx",
-    "sphinx-autobuild",
-    "sphinx-rtd-theme",
-    "sphinx-markdown-tables",
-    "sphinx-copybutton",
-    "piccolo_theme",
-]
-# Packages required for formatting code & running tests.
-extras["test"] = [
-    "docformatter",
-    "isort",
-    "flake8",
-    "pytest",
-    "pytest-xdist",
-]
+def load_requirements(fname="requirements.txt"):
+    """
+    Load requirements from requirements.txt, keeping PEP 508 direct URLs and git+ entries.
+    Filters out:
+      - comments/blank lines
+      - editable installs (-e ...)
+      - options (lines starting with -- or -c/-r)
+      - self-dependency (pyabsa==... or pyabsa @ ...)
+      - build-system tools that shouldn't be runtime deps (setuptools, wheel)
+    """
+    req_path = ROOT / fname
+    if not req_path.exists():
+        return []
+    reqs = []
+    for raw in req_path.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith("-e ") or line.startswith("--") or line.startswith("-c ") or line.startswith("-r "):
+            continue
+        # drop self-dependency if present
+        lower = line.lower().replace(" ", "")
+        if lower.startswith("pyabsa==") or lower.startswith("pyabsa@"):
+            continue
+        # drop build tools from runtime deps
+        if lower.startswith("setuptools") or lower.startswith("wheel"):
+            continue
+        reqs.append(line)
+    return reqs
 
-extras["deploy"] = [
-    "twine",
-    "wheel",
-    "setuptools",
-    "gradio",
-]
+VERSION = read_version()
+INSTALL_REQUIRES = load_requirements("requirements.txt")
 
-
-# extras["tensorflow"] = [
-#     "tensorflow",
-#     "tensorflow_hub",
-#     "tensorflow_text",
-#     "tensorboardX",
-#     "tensorflow-estimator",
-# ]
-
-# extras["optional"] = [
-#     "sentence_transformers",
-# ]
-
-# For developers, install development tools along with all optional dependencies.
+extras = {
+    "docs": [
+        "recommonmark",
+        "nbsphinx",
+        "sphinx-autobuild",
+        "sphinx-rtd-theme",
+        "sphinx-markdown-tables",
+        "sphinx-copybutton",
+        "piccolo_theme",
+    ],
+    "test": ["docformatter", "isort", "flake8", "pytest", "pytest-xdist"],
+    "deploy": ["twine", "wheel", "setuptools", "gradio"],
+}
 extras["dev"] = extras["docs"] + extras["test"] + extras["deploy"]
 
 setup(
-    name=__name__,
-    version=__version__,
-    description="This tool provides the state-of-the-art models for aspect term extraction (ATE), "
-    "aspect polarity classification (APC), and text classification (TC).",
-    long_description=long_description,
+    name="pyabsa",
+    version=VERSION,
+    description=(
+        "State-of-the-art models for Aspect Term Extraction (ATE), "
+        "Aspect Polarity Classification (APC), and Text Classification (TC)."
+    ),
+    long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/yangheng95/PyABSA",
-    # Author details
     author="Yang, Heng",
     author_email="hy345@exeter.ac.uk",
-    python_requires="<3.11, >=3.10",
+    python_requires=">=3.10,<3.13",
     packages=find_packages(),
     include_package_data=True,
-    exclude_package_date={"": [".gitignore"]},
-    # Choose your license
     license="MIT",
-    install_requires=[
-        "findfile>=2.0.0",
-        "autocuda>=0.16",
-        "metric-visualizer>=0.9.6",
-        "boostaug>=2.3.5",
-        "spacy",
-        "networkx",
-        "seqeval",
-        "update-checker",
-        "typing_extensions",
-        "tqdm",
-        "pytorch_warmup",
-        "termcolor",
-        "gitpython",  # need git installed in your OS
-        "transformers<4.30.0",
-        "torch>=1.0.0",
-        "pandas",
-        "sentencepiece",
-    ],
+    install_requires=INSTALL_REQUIRES,
+    extras_require=extras,
     classifiers=[
-        "Intended Audience :: Production/Research",
+        "Intended Audience :: Science/Research",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Operating System :: OS Independent",
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    extras_require=extras,
 )

@@ -37,11 +37,12 @@ def load_requirements(fname="requirements.txt"):
             continue
         # drop self-dependency if present
         lower = line.lower().replace(" ", "")
-        if lower.startswith("pyabsa==") or lower.startswith("pyabsa@"):
+        if lower.startswith("pyabsa==") or lower.startswith("pyabsa@") or lower.startswith("pyabsa~="):
             continue
         # drop build tools from runtime deps
         if lower.startswith("setuptools") or lower.startswith("wheel"):
             continue
+        line = line.split("==")[0].split(">=")[0].split("<=")[0].split("~=")[0].strip()
         reqs.append(line)
     return reqs
 

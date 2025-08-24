@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-# file: aspect_term_extraction.py
-# time: 2021/5/26 0026
-# author: YANG, HENG <hy345@exeter.ac.uk> (杨恒)
-# github: https://github.com/yangheng95
-# Copyright (C) 2021. All Rights Reserved.
-
 import json
 import os
 import pickle
@@ -40,6 +33,161 @@ from ..dataset_utils.__lcf__.data_utils_for_inference import (
 )
 from ..dataset_utils.__lcf__.data_utils_for_training import split_aspect
 from ..models import ATEPCModelList
+
+
+# ----------------------- NEW: helper for aspect-centric windows -----------------------
+def _aspect_windows_by_polarity(item, window=5, include_connector=True):
+    """
+    Build aspect-centric snippets grouped by polarity using token indices.
+
+    Priority rules:
+      - LEFT boundary prefers STRONG connectors (however, but, yet, although, though, nevertheless, nonetheless, whereas, while, still)
+        over punctuation/comma. If only a comma exists, skip it (avoid starting with ',').
+      - RIGHT boundary stops at nearest punctuation/comma/connector/end.
+      - Fallback: +/- `window` tokens.
+      - Light detokenization for clean punctuation spacing.
+    """
+    tokens = item.get("tokens", [])
+    aspects = item.get("aspect", [])
+    positions = item.get("position", [])
+    sentiments = item.get("sentiment", [])
+
+    if not tokens or not aspects or not positions or not sentiments:
+        return {"positive": [], "negative": [], "neutral": []}
+
+    # Sets
+    PUNCT = {".", "!", "?", ";", ":"}
+    STRONG_CONNS = {"but", "however", "though", "although", "yet", "nevertheless", "nonetheless", "whereas", "while", "still"}
+    SOFT_CONNS   = {"and", "or", "nor", "so", "because"}
+    CONNS = STRONG_CONNS | SOFT_CONNS
+
+    # Helpers
+    def is_comma(tok: str) -> bool:
+        return tok == ","
+
+    def is_punct(tok: str) -> bool:
+        return tok in PUNCT
+
+    def is_conn(tok: str) -> bool:
+        return tok.lower() in CONNS
+
+    def is_strong_conn(tok: str) -> bool:
+        return tok.lower() in STRONG_CONNS
+
+    def detok(ts):
+        s = " ".join(ts)
+        for p in [" .", " ,", " !", " ?", " ;", " :"]:
+            s = s.replace(p, p.strip())
+        # also normalize 'however ,'
+        s = s.replace("however ,", "however,")
+        return " ".join(s.split())
+
+    # scan LEFT with priority: nearest strong connector > nearest punctuation > nearest comma > nearest soft connector
+    def left_boundary_index(start_idx: int) -> int:
+        idx_strong = idx_punct = idx_comma = idx_soft = -1
+        i = start_idx
+        while i >= 0:
+            t = tokens[i]
+            if idx_strong < 0 and is_strong_conn(t):
+                idx_strong = i
+                # we can break early if we want the nearest strong connector only
+                break
+            if idx_punct < 0 and is_punct(t):
+                idx_punct = i
+            if idx_comma < 0 and is_comma(t):
+                idx_comma = i
+            if idx_soft < 0 and (is_conn(t) and not is_strong_conn(t)):
+                idx_soft = i
+            i -= 1
+        # priority choose:
+        if idx_strong >= 0:
+            return idx_strong
+        if idx_punct >= 0:
+            return idx_punct
+        if idx_comma >= 0:
+            return idx_comma
+        if idx_soft >= 0:
+            return idx_soft
+        return -1  # no boundary; before sentence
+
+    # scan RIGHT: nearest punctuation or connector or comma; else end
+    def right_boundary_index(start_idx: int) -> int:
+        n = len(tokens)
+        for i in range(start_idx, n):
+            t = tokens[i]
+            if is_punct(t) or is_comma(t) or is_conn(t):
+                return i
+        return n  # after sentence
+
+    def append_unique(lst, s, seen):
+        s_norm = " ".join(s.split()).strip()
+        if s_norm and s_norm not in seen:
+            lst.append(s_norm)
+            seen.add(s_norm)
+
+    pos_snips, neg_snips, neu_snips = [], [], []
+    seen_pos, seen_neg, seen_neu = set(), set(), set()
+
+    for i, pos in enumerate(positions):
+        if i >= len(sentiments):
+            continue
+
+        # token span of aspect (inclusive)
+        if isinstance(pos, (list, tuple)):
+            l_tok = pos[0]
+            r_tok = pos[-1] if len(pos) > 1 else pos[0]
+        else:
+            l_tok = r_tok = int(pos)
+
+        # boundaries
+        lb = left_boundary_index(l_tok - 1)
+        rb = right_boundary_index(r_tok + 1)
+
+        # default clip between boundaries (excluding boundary tokens)
+        L = lb + 1
+        R = rb - 1
+
+        # fallback if invalid
+        if L > R or L < 0 or R >= len(tokens):
+            L = max(0, l_tok - window)
+            R = min(len(tokens) - 1, r_tok + window)
+            lb = -1  # so connector logic below won't pull in leftovers
+
+        # include connector on the left if it's a strong one
+        if include_connector and lb >= 0:
+            if is_strong_conn(tokens[lb]):
+                L = lb  # include 'however' / 'but' etc.
+            elif is_punct(tokens[lb]):
+                # punctuation left is okay to include for context like '; however ,'
+                # but if immediately after is 'however', prefer to include that, not raw punct
+                if lb + 1 < len(tokens) and is_strong_conn(tokens[lb + 1]):
+                    L = lb + 1
+                else:
+                    # usually we keep punctuation excluded
+                    L = lb + 1
+            elif is_comma(tokens[lb]):
+                # don't start with a comma
+                L = lb + 1
+            else:
+                # soft connector ('and', 'because', etc.): keep it excluded by default
+                L = max(L, lb + 1)
+
+        # trim leading commas in the final range
+        while L <= R and is_comma(tokens[L]):
+            L += 1
+
+        snippet = detok(tokens[L:R + 1])
+
+        pol = str(sentiments[i]).strip().lower()
+        if pol == "positive":
+            append_unique(pos_snips, snippet, seen_pos)
+        elif pol == "negative":
+            append_unique(neg_snips, snippet, seen_neg)
+        else:
+            append_unique(neu_snips, snippet, seen_neu)
+
+    return {"positive": pos_snips, "negative": neg_snips, "neutral": neu_snips}
+# --------------------------------------------------------------------------------------
 
 
 class AspectExtractor(InferenceModel):
@@ -198,6 +346,15 @@ class AspectExtractor(InferenceModel):
         self.processor = ATEPCProcessor(self.tokenizer)
         self.num_labels = len(self.config.label_list) + 1
 
+        # ----------------------- NEW: defaults for snippet config -----------------------
+        if not hasattr(self.config, "context_radius"):
+            # tokens to include on EACH side of aspect
+            self.config.context_radius = 5
+        if not hasattr(self.config, "include_connector_in_snippet"):
+            # include one connector token (e.g., 'but') before the window
+            self.config.include_connector_in_snippet = True
+        # -------------------------------------------------------------------------------
+
         if kwargs.get("verbose", False):
             fprint("Config used in Training:")
             print_args(self.config)
@@ -254,32 +411,49 @@ class AspectExtractor(InferenceModel):
                 pre_example_id = item1[3]
             for i, item in enumerate(sentence_res):
                 asp_res = merged_results.get(i)
-                final_res.append(
-                    {
-                        "sentence": " ".join(item[0]),
-                        "IOB": item[1],
-                        "tokens": item[0],
-                        "aspect": asp_res["aspect"] if asp_res else [],
-                        "position": asp_res["position"] if asp_res else [],
-                        "sentiment": asp_res["sentiment"] if asp_res else [],
-                        "probs": asp_res["probs"] if asp_res else [],
-                        "confidence": asp_res["confidence"] if asp_res else [],
-                    }
+                item_dict = {
+                    "sentence": " ".join(item[0]),
+                    "IOB": item[1],
+                    "tokens": item[0],
+                    "aspect": asp_res["aspect"] if asp_res else [],
+                    "position": asp_res["position"] if asp_res else [],
+                    "sentiment": asp_res["sentiment"] if asp_res else [],
+                    "probs": asp_res["probs"] if asp_res else [],
+                    "confidence": asp_res["confidence"] if asp_res else [],
+                }
+
+                # ----------------------- NEW: attach positive / negative snippets -----------------------
+                pol_snips = _aspect_windows_by_polarity(
+                    item_dict,
+                    window=getattr(self.config, "context_radius", 5),
+                    include_connector=getattr(self.config, "include_connector_in_snippet", True),
                 )
+                item_dict["positive"] = pol_snips.get("positive", [])
+                item_dict["negative"] = pol_snips.get("negative", [])
+                # If you also want neutral:
+                # item_dict["neutral"] = pol_snips.get("neutral", [])
+                # -----------------------------------------------------------------------------------------
+
+                final_res.append(item_dict)
         else:
             for item1, item2 in zip(sentence_res, results["extraction_res"]):
-                final_res.append(
-                    {
-                        "sentence": " ".join(item2[0]),
-                        "IOB": item2[1],
-                        "tokens": item1[0],
-                        "aspect": item2[3],
-                        "position": [],
-                        "sentiment": [],
-                        "probs": [],
-                        "confidence": [],
-                    }
-                )
+                item_dict = {
+                    "sentence": " ".join(item2[0]),
+                    "IOB": item2[1],
+                    "tokens": item1[0],
+                    "aspect": item2[3],
+                    "position": [],
+                    "sentiment": [],
+                    "probs": [],
+                    "confidence": [],
+                }
+
+                # no sentiments in this branch → empty snippet buckets
+                item_dict["positive"] = []
+                item_dict["negative"] = []
+                # item_dict["neutral"] = []
+
+                final_res.append(item_dict)
 
         return final_res
 

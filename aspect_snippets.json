@@ -1,0 +1,364 @@
+[
+  {
+    "id": 0,
+    "sentence": "The camera is excellent , but the battery life drains too quickly .",
+    "aspects": [
+      "camera",
+      "battery life"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        7,
+        8
+      ]
+    ],
+    "positive": [
+      "The camera is excellent"
+    ],
+    "negative": [
+      "but the battery life drains too quickly"
+    ],
+    "confidence": [
+      0.9935,
+      0.986
+    ],
+    "probs": [
+      [
+        0.005179605446755886,
+        0.001338496571406722,
+        0.9934818148612976
+      ],
+      [
+        0.9860236644744873,
+        0.005259291268885136,
+        0.008717122487723827
+      ]
+    ]
+  },
+  {
+    "id": 1,
+    "sentence": "The screen is too dim , the speakers are weak , but the keyboard feels amazing .",
+    "aspects": [
+      "screen",
+      "speakers",
+      "keyboard"
+    ],
+    "sentiments": [
+      "Negative",
+      "Negative",
+      "Positive"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        7
+      ],
+      [
+        13
+      ]
+    ],
+    "positive": [
+      "but the keyboard feels amazing"
+    ],
+    "negative": [
+      "The screen is too dim",
+      "the speakers are weak"
+    ],
+    "confidence": [
+      0.9929,
+      0.9918,
+      0.9834
+    ],
+    "probs": [
+      [
+        0.9929169416427612,
+        0.002834474667906761,
+        0.0042485808953642845
+      ],
+      [
+        0.9918032288551331,
+        0.003002322744578123,
+        0.00519449170678854
+      ],
+      [
+        0.015082993544638157,
+        0.0015501255402341485,
+        0.983366847038269
+      ]
+    ]
+  },
+  {
+    "id": 2,
+    "sentence": "The build quality is solid ; however , the software is buggy and the updates are slow .",
+    "aspects": [
+      "build quality",
+      "software"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1,
+        2
+      ],
+      [
+        9
+      ]
+    ],
+    "positive": [
+      "The build quality is solid"
+    ],
+    "negative": [
+      "however, the software is buggy"
+    ],
+    "confidence": [
+      0.9937,
+      0.9904
+    ],
+    "probs": [
+      [
+        0.004757299087941647,
+        0.0015240955399349332,
+        0.9937186241149902
+      ],
+      [
+        0.9903941750526428,
+        0.002048367401584983,
+        0.0075573548674583435
+      ]
+    ]
+  },
+  {
+    "id": 3,
+    "sentence": "The display is sharp and colorful , yet the device overheats after prolonged use .",
+    "aspects": [
+      "display"
+    ],
+    "sentiments": [
+      "Positive"
+    ],
+    "positions": [
+      [
+        1
+      ]
+    ],
+    "positive": [
+      "The display is sharp"
+    ],
+    "negative": [],
+    "confidence": [
+      0.9951
+    ],
+    "probs": [
+      [
+        0.0038252202793955803,
+        0.0010869342368096113,
+        0.9950878024101257
+      ]
+    ]
+  },
+  {
+    "id": 4,
+    "sentence": "The charger is included , the battery lasts all day , but the phone overheats sometimes .",
+    "aspects": [
+      "charger",
+      "battery"
+    ],
+    "sentiments": [
+      "Neutral",
+      "Positive"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        6
+      ]
+    ],
+    "positive": [
+      "the battery lasts all day"
+    ],
+    "negative": [],
+    "confidence": [
+      0.8975,
+      0.7737
+    ],
+    "probs": [
+      [
+        0.012117935344576836,
+        0.8974656462669373,
+        0.09041645377874374
+      ],
+      [
+        0.010002652183175087,
+        0.21630586683750153,
+        0.7736914753913879
+      ]
+    ]
+  },
+  {
+    "id": 5,
+    "sentence": "Although the camera is decent , the low - light performance is disappointing .",
+    "aspects": [
+      "camera",
+      "- light performance"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        2
+      ],
+      [
+        8,
+        9,
+        10
+      ]
+    ],
+    "positive": [
+      "Although the camera is decent"
+    ],
+    "negative": [
+      "Although the camera is decent, the low - light performance is disappointing"
+    ],
+    "confidence": [
+      0.9917,
+      0.9892
+    ],
+    "probs": [
+      [
+        0.003210544353350997,
+        0.005131369922310114,
+        0.9916580319404602
+      ],
+      [
+        0.9891759753227234,
+        0.0033039969857782125,
+        0.0075200521387159824
+      ]
+    ]
+  },
+  {
+    "id": 6,
+    "sentence": "The design is sleek . The weight is manageable , but the price is far too high !",
+    "aspects": [
+      "design",
+      "weight",
+      "price"
+    ],
+    "sentiments": [
+      "Positive",
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        6
+      ],
+      [
+        12
+      ]
+    ],
+    "positive": [
+      "The design is sleek",
+      "The weight is manageable"
+    ],
+    "negative": [
+      "but the price is far too high"
+    ],
+    "confidence": [
+      0.9934,
+      0.9153,
+      0.9521
+    ],
+    "probs": [
+      [
+        0.0017532026395201683,
+        0.004833573941141367,
+        0.9934132695198059
+      ],
+      [
+        0.003142202738672495,
+        0.08160759508609772,
+        0.9152502417564392
+      ],
+      [
+        0.9520860314369202,
+        0.007601506542414427,
+        0.040312524884939194
+      ]
+    ]
+  },
+  {
+    "id": 7,
+    "sentence": "Battery life is okay , the camera is outstanding , however the charging speed is terrible .",
+    "aspects": [
+      "Battery life",
+      "camera",
+      "charging speed"
+    ],
+    "sentiments": [
+      "Neutral",
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        0,
+        1
+      ],
+      [
+        6
+      ],
+      [
+        12,
+        13
+      ]
+    ],
+    "positive": [
+      "the camera is outstanding"
+    ],
+    "negative": [
+      "however the charging speed is terrible"
+    ],
+    "confidence": [
+      0.7289,
+      0.8045,
+      0.9818
+    ],
+    "probs": [
+      [
+        0.005911807995289564,
+        0.7288693189620972,
+        0.2652188539505005
+      ],
+      [
+        0.006678014062345028,
+        0.18879087269306183,
+        0.8045311570167542
+      ],
+      [
+        0.9817602038383484,
+        0.004038727842271328,
+        0.014201064594089985
+      ]
+    ]
+  }
+]

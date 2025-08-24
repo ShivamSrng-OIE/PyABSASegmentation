@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "sentence": "The camera is excellent , but the battery life drains too quickly .",
+    "sentence": "The camera is excellent, but the battery life drains too quickly.",
     "aspects": [
       "camera",
       "battery life"
@@ -15,307 +15,196 @@
         1
       ],
       [
-        7,
-        8
+        1,
+        2
       ]
     ],
     "positive": [
       "The camera is excellent"
     ],
     "negative": [
-      "but the battery life drains too quickly"
+      "the battery life drains too quickly"
     ],
     "confidence": [
-      0.9935,
-      0.986
+      0.9979,
+      0.9925
     ],
     "probs": [
       [
-        0.005179605446755886,
-        0.001338496571406722,
-        0.9934818148612976
+        0.001015935093164444,
+        0.0010398359736427665,
+        0.997944176197052
       ],
       [
-        0.9860236644744873,
-        0.005259291268885136,
-        0.008717122487723827
+        0.9924914240837097,
+        0.002933661686256528,
+        0.004574797581881285
       ]
     ]
   },
   {
     "id": 1,
-    "sentence": "The screen is too dim , the speakers are weak , but the keyboard feels amazing .",
+    "sentence": "The speakers are loud and clear, and the mic is fine, but the fans are obnoxiously noisy.",
     "aspects": [
-      "screen",
       "speakers",
-      "keyboard"
+      "mic",
+      "fans"
     ],
     "sentiments": [
-      "Negative",
-      "Negative",
-      "Positive"
+      "Positive",
+      "Positive",
+      "Negative"
     ],
     "positions": [
       [
         1
       ],
       [
-        7
+        1
       ],
       [
-        13
+        1
       ]
     ],
     "positive": [
-      "but the keyboard feels amazing"
+      "The speakers are loud",
+      "the mic is fine"
     ],
     "negative": [
-      "The screen is too dim",
-      "the speakers are weak"
+      "the fans are obnoxiously noisy"
     ],
     "confidence": [
-      0.9929,
-      0.9918,
-      0.9834
+      0.9909,
+      0.9894,
+      0.9854
     ],
     "probs": [
       [
-        0.9929169416427612,
-        0.002834474667906761,
-        0.0042485808953642845
+        0.0067608351819217205,
+        0.002350500551983714,
+        0.9908887147903442
       ],
       [
-        0.9918032288551331,
-        0.003002322744578123,
-        0.00519449170678854
+        0.0032188137993216515,
+        0.007370124105364084,
+        0.9894110560417175
       ],
       [
-        0.015082993544638157,
-        0.0015501255402341485,
-        0.983366847038269
+        0.9853588342666626,
+        0.006520828697830439,
+        0.00812041200697422
       ]
     ]
   },
   {
     "id": 2,
-    "sentence": "The build quality is solid ; however , the software is buggy and the updates are slow .",
+    "sentence": "The keyboard feels great and the trackpad is responsive, yet the palm rest gets sticky.",
     "aspects": [
-      "build quality",
-      "software"
+      "keyboard",
+      "trackpad",
+      "palm rest"
     ],
     "sentiments": [
+      "Positive",
       "Positive",
       "Negative"
     ],
     "positions": [
       [
-        1,
-        2
+        1
       ],
       [
-        9
+        1
+      ],
+      [
+        1,
+        2
       ]
     ],
     "positive": [
-      "The build quality is solid"
+      "The keyboard feels great",
+      "the trackpad is responsive"
     ],
     "negative": [
-      "however, the software is buggy"
+      "the palm rest gets sticky"
     ],
     "confidence": [
-      0.9937,
-      0.9904
+      0.9976,
+      0.9978,
+      0.9818
     ],
     "probs": [
       [
-        0.004757299087941647,
-        0.0015240955399349332,
-        0.9937186241149902
+        0.0010053094010800123,
+        0.0014015306951478124,
+        0.997593104839325
       ],
       [
-        0.9903941750526428,
-        0.002048367401584983,
-        0.0075573548674583435
+        0.0007925642421469092,
+        0.0013796408893540502,
+        0.9978278279304504
+      ],
+      [
+        0.9818198680877686,
+        0.005141145549714565,
+        0.01303892396390438
       ]
     ]
   },
   {
     "id": 3,
-    "sentence": "The display is sharp and colorful , yet the device overheats after prolonged use .",
+    "sentence": "The app loads fast but the login screen freezes and the captcha never shows.",
     "aspects": [
-      "display"
+      "app",
+      "captcha"
     ],
     "sentiments": [
-      "Positive"
+      "Positive",
+      "Negative"
     ],
     "positions": [
+      [
+        1
+      ],
       [
         1
       ]
     ],
     "positive": [
-      "The display is sharp"
+      "The app loads fast"
     ],
-    "negative": [],
+    "negative": [
+      "the captcha never shows"
+    ],
     "confidence": [
-      0.9951
+      0.995,
+      0.9856
     ],
     "probs": [
       [
-        0.0038252202793955803,
-        0.0010869342368096113,
-        0.9950878024101257
+        0.003732713172212243,
+        0.0013060756027698517,
+        0.9949612617492676
+      ],
+      [
+        0.9856351613998413,
+        0.0036454331129789352,
+        0.010719322599470615
       ]
     ]
   },
   {
     "id": 4,
-    "sentence": "The charger is included , the battery lasts all day , but the phone overheats sometimes .",
+    "sentence": "Build quality is premium, the hinge is sturdy, and the screen is gorgeous, but the coil whine is unbearable.",
     "aspects": [
-      "charger",
-      "battery"
-    ],
-    "sentiments": [
-      "Neutral",
-      "Positive"
-    ],
-    "positions": [
-      [
-        1
-      ],
-      [
-        6
-      ]
-    ],
-    "positive": [
-      "the battery lasts all day"
-    ],
-    "negative": [],
-    "confidence": [
-      0.8975,
-      0.7737
-    ],
-    "probs": [
-      [
-        0.012117935344576836,
-        0.8974656462669373,
-        0.09041645377874374
-      ],
-      [
-        0.010002652183175087,
-        0.21630586683750153,
-        0.7736914753913879
-      ]
-    ]
-  },
-  {
-    "id": 5,
-    "sentence": "Although the camera is decent , the low - light performance is disappointing .",
-    "aspects": [
-      "camera",
-      "- light performance"
-    ],
-    "sentiments": [
-      "Positive",
-      "Negative"
-    ],
-    "positions": [
-      [
-        2
-      ],
-      [
-        8,
-        9,
-        10
-      ]
-    ],
-    "positive": [
-      "Although the camera is decent"
-    ],
-    "negative": [
-      "Although the camera is decent, the low - light performance is disappointing"
-    ],
-    "confidence": [
-      0.9917,
-      0.9892
-    ],
-    "probs": [
-      [
-        0.003210544353350997,
-        0.005131369922310114,
-        0.9916580319404602
-      ],
-      [
-        0.9891759753227234,
-        0.0033039969857782125,
-        0.0075200521387159824
-      ]
-    ]
-  },
-  {
-    "id": 6,
-    "sentence": "The design is sleek . The weight is manageable , but the price is far too high !",
-    "aspects": [
-      "design",
-      "weight",
-      "price"
+      "Build quality",
+      "hinge",
+      "screen",
+      "coil whine"
     ],
     "sentiments": [
       "Positive",
       "Positive",
-      "Negative"
-    ],
-    "positions": [
-      [
-        1
-      ],
-      [
-        6
-      ],
-      [
-        12
-      ]
-    ],
-    "positive": [
-      "The design is sleek",
-      "The weight is manageable"
-    ],
-    "negative": [
-      "but the price is far too high"
-    ],
-    "confidence": [
-      0.9934,
-      0.9153,
-      0.9521
-    ],
-    "probs": [
-      [
-        0.0017532026395201683,
-        0.004833573941141367,
-        0.9934132695198059
-      ],
-      [
-        0.003142202738672495,
-        0.08160759508609772,
-        0.9152502417564392
-      ],
-      [
-        0.9520860314369202,
-        0.007601506542414427,
-        0.040312524884939194
-      ]
-    ]
-  },
-  {
-    "id": 7,
-    "sentence": "Battery life is okay , the camera is outstanding , however the charging speed is terrible .",
-    "aspects": [
-      "Battery life",
-      "camera",
-      "charging speed"
-    ],
-    "sentiments": [
-      "Neutral",
       "Positive",
       "Negative"
     ],
@@ -328,36 +217,2230 @@
         6
       ],
       [
-        12,
-        13
+        1
+      ],
+      [
+        1,
+        2
       ]
     ],
     "positive": [
-      "the camera is outstanding"
+      "Build quality is premium",
+      "the hinge is sturdy",
+      "the screen is gorgeous"
     ],
     "negative": [
-      "however the charging speed is terrible"
+      "the coil whine is unbearable"
     ],
     "confidence": [
-      0.7289,
-      0.8045,
+      0.9978,
+      0.9959,
+      0.9983,
+      0.9827
+    ],
+    "probs": [
+      [
+        0.0006590004777535796,
+        0.0015873234951868653,
+        0.9977536797523499
+      ],
+      [
+        0.000812877609860152,
+        0.0032566292211413383,
+        0.9959304928779602
+      ],
+      [
+        0.0008571578073315322,
+        0.0008911356562748551,
+        0.998251736164093
+      ],
+      [
+        0.9827499389648438,
+        0.002344350563362241,
+        0.014905678108334541
+      ]
+    ]
+  },
+  {
+    "id": 5,
+    "sentence": "However, the updates are slow and the notifications arrive late.",
+    "aspects": [
+      "updates",
+      "notifications"
+    ],
+    "sentiments": [
+      "Negative",
+      "Negative"
+    ],
+    "positions": [
+      [
+        3
+      ],
+      [
+        1
+      ]
+    ],
+    "positive": [],
+    "negative": [
+      "However, the updates are slow",
+      "the notifications arrive late"
+    ],
+    "confidence": [
+      0.9855,
+      0.7582
+    ],
+    "probs": [
+      [
+        0.9855056405067444,
+        0.002017728053033352,
+        0.012476678006350994
+      ],
+      [
+        0.7581591606140137,
+        0.038553617894649506,
+        0.2032872587442398
+      ]
+    ]
+  },
+  {
+    "id": 6,
+    "sentence": "Although the camera is decent, low-light performance is disappointing and stabilization is worse.",
+    "aspects": [
+      "camera",
+      "performance",
+      "stabilization"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative",
+      "Negative"
+    ],
+    "positions": [
+      [
+        2
+      ],
+      [
+        9
+      ],
+      [
+        0
+      ]
+    ],
+    "positive": [
+      "Although the camera is decent"
+    ],
+    "negative": [
+      "Although the camera is decent, low - light performance is disappointing",
+      "stabilization is worse"
+    ],
+    "confidence": [
+      0.9911,
+      0.983,
+      0.9916
+    ],
+    "probs": [
+      [
+        0.0037048887461423874,
+        0.005221920553594828,
+        0.9910731911659241
+      ],
+      [
+        0.9829581379890442,
+        0.004653001204133034,
+        0.012388866394758224
+      ],
+      [
+        0.9915585517883301,
+        0.0022206190042197704,
+        0.0062208762392401695
+      ]
+    ]
+  },
+  {
+    "id": 7,
+    "sentence": "Yet the battery remains weak even after the latest patch.",
+    "aspects": [
+      "battery"
+    ],
+    "sentiments": [
+      "Negative"
+    ],
+    "positions": [
+      [
+        2
+      ]
+    ],
+    "positive": [],
+    "negative": [
+      "Yet the battery remains weak even after the latest patch"
+    ],
+    "confidence": [
+      0.989
+    ],
+    "probs": [
+      [
+        0.9890295267105103,
+        0.002682773396372795,
+        0.008287710137665272
+      ]
+    ]
+  },
+  {
+    "id": 8,
+    "sentence": "But the charger stops working unless the cable is held at an angle.",
+    "aspects": [
+      "charger",
+      "cable"
+    ],
+    "sentiments": [
+      "Negative",
+      "Negative"
+    ],
+    "positions": [
+      [
+        2
+      ],
+      [
+        7
+      ]
+    ],
+    "positive": [],
+    "negative": [
+      "But the charger stops working unless the cable is held at an angle"
+    ],
+    "confidence": [
+      0.9816,
+      0.9326
+    ],
+    "probs": [
+      [
+        0.9815911054611206,
+        0.009867682121694088,
+        0.008541160263121128
+      ],
+      [
+        0.9325776696205139,
+        0.051262613385915756,
+        0.016159716993570328
+      ]
+    ]
+  },
+  {
+    "id": 9,
+    "sentence": "And the speakers distort above 70% volume.",
+    "aspects": [
+      "speakers",
+      "volume"
+    ],
+    "sentiments": [
+      "Negative",
+      "Negative"
+    ],
+    "positions": [
+      [
+        2
+      ],
+      [
+        7
+      ]
+    ],
+    "positive": [],
+    "negative": [
+      "the speakers distort above 70 % volume"
+    ],
+    "confidence": [
+      0.9954,
+      0.9935
+    ],
+    "probs": [
+      [
+        0.9954285621643066,
+        0.001650483114644885,
+        0.002920896979048848
+      ],
+      [
+        0.9934654831886292,
+        0.002743585966527462,
+        0.003790896385908127
+      ]
+    ]
+  },
+  {
+    "id": 10,
+    "sentence": "The UI is intuitive, navigation is smooth, onboarding is clunky, the help button does nothing.",
+    "aspects": [
+      "UI",
+      "navigation",
+      "onboarding"
+    ],
+    "sentiments": [
+      "Positive",
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        5
+      ],
+      [
+        9
+      ]
+    ],
+    "positive": [
+      "The UI is intuitive",
+      "navigation is smooth"
+    ],
+    "negative": [
+      "onboarding is clunky"
+    ],
+    "confidence": [
+      0.9945,
+      0.9698,
+      0.5325
+    ],
+    "probs": [
+      [
+        0.0029898067004978657,
+        0.0024710381403565407,
+        0.994539201259613
+      ],
+      [
+        0.02477782964706421,
+        0.005412987433373928,
+        0.9698091745376587
+      ],
+      [
+        0.5324593186378479,
+        0.011191604658961296,
+        0.45634904503822327
+      ]
+    ]
+  },
+  {
+    "id": 11,
+    "sentence": "The lens, the sensor, the ISP—all top-notch; the autofocus, not so much.",
+    "aspects": [
+      "lens",
+      "sensor",
+      "ISP",
+      "autofocus"
+    ],
+    "sentiments": [
+      "Positive",
+      "Positive",
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        4
+      ],
+      [
+        7
+      ],
+      [
+        1
+      ]
+    ],
+    "positive": [
+      "The lens",
+      "the sensor",
+      "the ISP — all top - notch"
+    ],
+    "negative": [
+      "the autofocus"
+    ],
+    "confidence": [
+      0.9983,
+      0.9984,
+      0.9985,
+      0.755
+    ],
+    "probs": [
+      [
+        0.0007491122814826667,
+        0.0009448936325497925,
+        0.9983060359954834
+      ],
+      [
+        0.0006828527548350394,
+        0.0008760911296121776,
+        0.9984410405158997
+      ],
+      [
+        0.0007053568260744214,
+        0.000746412668377161,
+        0.9985482096672058
+      ],
+      [
+        0.7550212144851685,
+        0.06254148483276367,
+        0.1824372559785843
+      ]
+    ]
+  },
+  {
+    "id": 12,
+    "sentence": "Maps, music, calls: fine; hotspot: terrible; Bluetooth pairing: flaky; car mode: brilliant.",
+    "aspects": [
+      "Maps",
+      "music",
+      "calls",
+      "hotspot",
+      "Bluetooth pairing",
+      "car mode"
+    ],
+    "sentiments": [
+      "Positive",
+      "Positive",
+      "Positive",
+      "Negative",
+      "Negative",
+      "Positive"
+    ],
+    "positions": [
+      [
+        0
+      ],
+      [
+        2
+      ],
+      [
+        4
+      ],
+      [
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "positive": [
+      "Maps",
+      "music",
+      "calls",
+      "car mode"
+    ],
+    "negative": [
+      "hotspot",
+      "Bluetooth pairing"
+    ],
+    "confidence": [
+      0.9868,
+      0.9877,
+      0.9678,
+      0.9911,
+      0.9833,
+      0.9981
+    ],
+    "probs": [
+      [
+        0.0021684281527996063,
+        0.011016925796866417,
+        0.9868146181106567
+      ],
+      [
+        0.0015925264451652765,
+        0.010744060389697552,
+        0.9876634478569031
+      ],
+      [
+        0.003554625902324915,
+        0.028685417026281357,
+        0.9677599668502808
+      ],
+      [
+        0.9911097288131714,
+        0.002120319055393338,
+        0.006769927684217691
+      ],
+      [
+        0.9833305478096008,
+        0.0039757657796144485,
+        0.012693691998720169
+      ],
+      [
+        0.0007890021661296487,
+        0.001126974239014089,
+        0.9980840682983398
+      ]
+    ]
+  },
+  {
+    "id": 13,
+    "sentence": "Screen: vibrant, touch: accurate, oleophobic coating: absent.",
+    "aspects": [
+      "Screen",
+      "coating"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        0
+      ],
+      [
+        9
+      ]
+    ],
+    "positive": [
+      "Screen"
+    ],
+    "negative": [
+      "accurate, oleophobic coating"
+    ],
+    "confidence": [
+      0.996,
+      0.6388
+    ],
+    "probs": [
+      [
+        0.0018912809900939465,
+        0.0021173162385821342,
+        0.9959914088249207
+      ],
+      [
+        0.638822078704834,
+        0.04461243003606796,
+        0.31656551361083984
+      ]
+    ]
+  },
+  {
+    "id": 14,
+    "sentence": "The price is fair, the warranty is generous, the customer chat is robotic.",
+    "aspects": [
+      "price",
+      "warranty",
+      "customer chat"
+    ],
+    "sentiments": [
+      "Positive",
+      "Positive",
+      "Positive"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        6
+      ],
+      [
+        11,
+        12
+      ]
+    ],
+    "positive": [
+      "The price is fair",
+      "the warranty is generous",
+      "the customer chat is robotic"
+    ],
+    "negative": [],
+    "confidence": [
+      0.9627,
+      0.9926,
+      0.467
+    ],
+    "probs": [
+      [
+        0.0021421134006232023,
+        0.0351998470723629,
+        0.9626580476760864
+      ],
+      [
+        0.0028888683300465345,
+        0.004537856671959162,
+        0.9925732612609863
+      ],
+      [
+        0.4453405439853668,
+        0.08763247728347778,
+        0.4670269787311554
+      ]
+    ]
+  },
+  {
+    "id": 15,
+    "sentence": "The keyboard (to my surprise) is silent, but the spacebar rattles.",
+    "aspects": [
+      "keyboard",
+      "spacebar"
+    ],
+    "sentiments": [
+      "Negative",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        1
+      ]
+    ],
+    "positive": [],
+    "negative": [
+      "The keyboard ( to my surprise ) is silent",
+      "the spacebar rattles"
+    ],
+    "confidence": [
+      0.7311,
+      0.7172
+    ],
+    "probs": [
+      [
+        0.7310815453529358,
+        0.040720704942941666,
+        0.22819775342941284
+      ],
+      [
+        0.7171698212623596,
+        0.044736914336681366,
+        0.23809321224689484
+      ]
+    ]
+  },
+  {
+    "id": 16,
+    "sentence": "The display—while bright—bleeds along the bottom edge.",
+    "aspects": [
+      "display"
+    ],
+    "sentiments": [
+      "Positive"
+    ],
+    "positions": [
+      [
+        1
+      ]
+    ],
+    "positive": [
+      "The display —"
+    ],
+    "negative": [],
+    "confidence": [
+      0.775
+    ],
+    "probs": [
+      [
+        0.2012551873922348,
+        0.023762591183185577,
+        0.7749822735786438
+      ]
+    ]
+  },
+  {
+    "id": 17,
+    "sentence": "The hinge (rev 2) is solid; the first batch squeaked constantly.",
+    "aspects": [
+      "hinge"
+    ],
+    "sentiments": [
+      "Positive"
+    ],
+    "positions": [
+      [
+        1
+      ]
+    ],
+    "positive": [
+      "The hinge ( rev 2 ) is solid"
+    ],
+    "negative": [],
+    "confidence": [
+      0.9334
+    ],
+    "probs": [
+      [
+        0.03020942583680153,
+        0.03635323420166969,
+        0.9334373474121094
+      ]
+    ]
+  },
+  {
+    "id": 18,
+    "sentence": "The camera, frankly, is overrated; the selfie mode over-smooths faces.",
+    "aspects": [
+      "camera",
+      "selfie mode"
+    ],
+    "sentiments": [
+      "Negative",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "positive": [],
+    "negative": [
+      "The camera",
+      "the selfie mode over - smooths faces"
+    ],
+    "confidence": [
+      0.9898,
+      0.8362
+    ],
+    "probs": [
+      [
+        0.989791989326477,
+        0.0024286319967359304,
+        0.007779390085488558
+      ],
+      [
+        0.8361978530883789,
+        0.02759375423192978,
+        0.13620847463607788
+      ]
+    ]
+  },
+  {
+    "id": 19,
+    "sentence": "Performance (single-core) is superb; (multi-core) throttles quickly.",
+    "aspects": [
+      "Performance",
+      "throttles"
+    ],
+    "sentiments": [
+      "Positive",
+      "Positive"
+    ],
+    "positions": [
+      [
+        0
+      ],
+      [
+        5
+      ]
+    ],
+    "positive": [
+      "Performance ( single - core ) is superb",
+      "( multi - core ) throttles quickly"
+    ],
+    "negative": [],
+    "confidence": [
+      0.9957,
+      0.9956
+    ],
+    "probs": [
+      [
+        0.0009719329536892474,
+        0.0033296612091362476,
+        0.9956984519958496
+      ],
+      [
+        0.0016073854640126228,
+        0.0027535874396562576,
+        0.9956389665603638
+      ]
+    ]
+  },
+  {
+    "id": 20,
+    "sentence": "The camera isn't bad, but it's not good either.",
+    "aspects": [
+      "camera"
+    ],
+    "sentiments": [
+      "Positive"
+    ],
+    "positions": [
+      [
+        1
+      ]
+    ],
+    "positive": [
+      "The camera isn ' t bad"
+    ],
+    "negative": [],
+    "confidence": [
+      0.6972
+    ],
+    "probs": [
+      [
+        0.019946815446019173,
+        0.2828359305858612,
+        0.6972172260284424
+      ]
+    ]
+  },
+  {
+    "id": 21,
+    "sentence": "I don't dislike the speakers; I just can't understand dialogue.",
+    "aspects": [
+      "speakers",
+      "dialogue"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        6
+      ],
+      [
+        6
+      ]
+    ],
+    "positive": [
+      "I don ' t dislike the speakers"
+    ],
+    "negative": [
+      "I just can ' t understand dialogue"
+    ],
+    "confidence": [
+      0.9953,
+      0.9893
+    ],
+    "probs": [
+      [
+        0.0013261997373774648,
+        0.003373802872374654,
+        0.9952999353408813
+      ],
+      [
+        0.9893013834953308,
+        0.0027668867260217667,
+        0.00793172512203455
+      ]
+    ]
+  },
+  {
+    "id": 22,
+    "sentence": "The update didn't fix the lag; it didn't make it worse, either.",
+    "aspects": [
+      "update",
+      "lag"
+    ],
+    "sentiments": [
+      "Negative",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        7
+      ]
+    ],
+    "positive": [],
+    "negative": [
+      "The update didn ' t fix the lag"
+    ],
+    "confidence": [
+      0.9818,
+      0.9877
+    ],
+    "probs": [
+      [
+        0.9818354845046997,
+        0.004534727428108454,
+        0.013629757799208164
+      ],
+      [
+        0.9877370595932007,
+        0.0055786119773983955,
+        0.006684236228466034
+      ]
+    ]
+  },
+  {
+    "id": 23,
+    "sentence": "Not only is the battery small, it's also non-replaceable.",
+    "aspects": [
+      "battery"
+    ],
+    "sentiments": [
+      "Negative"
+    ],
+    "positions": [
+      [
+        4
+      ]
+    ],
+    "positive": [],
+    "negative": [
+      "Not only is the battery small"
+    ],
+    "confidence": [
+      0.9906
+    ],
+    "probs": [
+      [
+        0.9905553460121155,
+        0.0015730105806142092,
+        0.007871623151004314
+      ]
+    ]
+  },
+  {
+    "id": 24,
+    "sentence": "It's no longer slow, just inconsistent under load.",
+    "aspects": [
+      "load"
+    ],
+    "sentiments": [
+      "Negative"
+    ],
+    "positions": [
+      [
+        10
+      ]
+    ],
+    "positive": [],
+    "negative": [
+      "just inconsistent under load"
+    ],
+    "confidence": [
+      0.5884
+    ],
+    "probs": [
+      [
+        0.5883622765541077,
+        0.053414635360240936,
+        0.3582231104373932
+      ]
+    ]
+  },
+  {
+    "id": 25,
+    "sentence": "The display is brighter than last year, but colors look worse than budget models.",
+    "aspects": [
+      "display",
+      "colors"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        0
+      ]
+    ],
+    "positive": [
+      "The display is brighter than last year"
+    ],
+    "negative": [
+      "colors look worse than budget models"
+    ],
+    "confidence": [
+      0.9931,
+      0.9827
+    ],
+    "probs": [
+      [
+        0.0030776956118643284,
+        0.0037794816307723522,
+        0.99314284324646
+      ],
+      [
+        0.982680082321167,
+        0.00597038771957159,
+        0.011349552311003208
+      ]
+    ]
+  },
+  {
+    "id": 26,
+    "sentence": "The keyboard is the best part; the trackpad is the worst.",
+    "aspects": [
+      "keyboard",
+      "trackpad"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        1
+      ]
+    ],
+    "positive": [
+      "The keyboard is the best part"
+    ],
+    "negative": [
+      "the trackpad is the worst"
+    ],
+    "confidence": [
+      0.9964,
+      0.9871
+    ],
+    "probs": [
+      [
+        0.0019922966603189707,
+        0.0015989046078175306,
+        0.9964087605476379
+      ],
+      [
+        0.9870973825454712,
+        0.002351444913074374,
+        0.010551181621849537
+      ]
+    ]
+  },
+  {
+    "id": 27,
+    "sentence": "Faster than my old phone, slower than every competitor in this price.",
+    "aspects": [
+      "price"
+    ],
+    "sentiments": [
+      "Positive"
+    ],
+    "positions": [
+      [
+        12
+      ]
+    ],
+    "positive": [
+      "slower than every competitor in this price"
+    ],
+    "negative": [],
+    "confidence": [
+      0.4823
+    ],
+    "probs": [
+      [
+        0.4256049394607544,
+        0.0921182781457901,
+        0.4822767972946167
+      ]
+    ]
+  },
+  {
+    "id": 28,
+    "sentence": "The charger is heavier but less efficient than the 45W brick.",
+    "aspects": [
+      "charger"
+    ],
+    "sentiments": [
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ]
+    ],
+    "positive": [],
+    "negative": [
+      "The charger is heavier"
+    ],
+    "confidence": [
+      0.9723
+    ],
+    "probs": [
+      [
+        0.9722540378570557,
+        0.007410929538309574,
+        0.020334981381893158
+      ]
+    ]
+  },
+  {
+    "id": 29,
+    "sentence": "The software is more polished now, yet the camera is less reliable.",
+    "aspects": [
+      "software",
+      "camera"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        1
+      ]
+    ],
+    "positive": [
+      "The software is more polished now"
+    ],
+    "negative": [
+      "the camera is less reliable"
+    ],
+    "confidence": [
+      0.8987,
+      0.9835
+    ],
+    "probs": [
+      [
+        0.03642328083515167,
+        0.06485382467508316,
+        0.8987229466438293
+      ],
+      [
+        0.9834504127502441,
+        0.0032287375070154667,
+        0.01332087442278862
+      ]
+    ]
+  },
+  {
+    "id": 30,
+    "sentence": "The camera? Stunning. Battery? Nope.",
+    "aspects": [
+      "camera",
+      "Battery"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        0
+      ]
+    ],
+    "positive": [
+      "The camera"
+    ],
+    "negative": [
+      "Battery"
+    ],
+    "confidence": [
+      0.9976,
+      0.7417
+    ],
+    "probs": [
+      [
+        0.0012979040620848536,
+        0.001119098044000566,
+        0.9975830316543579
+      ],
+      [
+        0.7417389154434204,
+        0.10644327104091644,
+        0.15181775391101837
+      ]
+    ]
+  },
+  {
+    "id": 31,
+    "sentence": "Great mic; terrible echo cancelation. Meetings ruined.",
+    "aspects": [
+      "mic",
+      "echo",
+      "Meetings"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        1
+      ],
+      [
+        0
+      ]
+    ],
+    "positive": [
+      "Great mic"
+    ],
+    "negative": [
+      "terrible echo cancelation",
+      "Meetings ruined"
+    ],
+    "confidence": [
+      0.994,
+      0.9925,
+      0.99
+    ],
+    "probs": [
+      [
+        0.0031501222401857376,
+        0.002809691708534956,
+        0.9940401911735535
+      ],
+      [
+        0.9925283193588257,
+        0.0020513138733804226,
+        0.005420413333922625
+      ],
+      [
+        0.9900215268135071,
+        0.002743831370025873,
+        0.00723463948816061
+      ]
+    ]
+  },
+  {
+    "id": 32,
+    "sentence": "Fast boot. Then… random crashes.",
+    "aspects": [
+      "boot",
+      "crashes"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        3
+      ]
+    ],
+    "positive": [
+      "Fast boot"
+    ],
+    "negative": [
+      "Then … random crashes"
+    ],
+    "confidence": [
+      0.9926,
+      0.9927
+    ],
+    "probs": [
+      [
+        0.0034654238261282444,
+        0.003940344788134098,
+        0.9925941824913025
+      ],
+      [
+        0.9926525354385376,
+        0.0025347385089844465,
+        0.004812683444470167
+      ]
+    ]
+  },
+  {
+    "id": 33,
+    "sentence": "Love the design—hate the fingerprints.",
+    "aspects": [
+      "design"
+    ],
+    "sentiments": [
+      "Positive"
+    ],
+    "positions": [
+      [
+        2
+      ]
+    ],
+    "positive": [
+      "Love the design — hate the fingerprints"
+    ],
+    "negative": [],
+    "confidence": [
+      0.9914
+    ],
+    "probs": [
+      [
+        0.005724856164306402,
+        0.002912574913352728,
+        0.9913626313209534
+      ]
+    ]
+  },
+  {
+    "id": 34,
+    "sentence": "Good speakers, meh bass, zero sub-bass.",
+    "aspects": [
+      "speakers",
+      "bass"
+    ],
+    "sentiments": [
+      "Positive",
+      "Positive"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        4
+      ]
+    ],
+    "positive": [
+      "Good speakers",
+      "meh bass"
+    ],
+    "negative": [],
+    "confidence": [
+      0.928,
+      0.4814
+    ],
+    "probs": [
+      [
+        0.038984425365924835,
+        0.032998647540807724,
+        0.9280169606208801
+      ],
+      [
+        0.15920735895633698,
+        0.3593936562538147,
+        0.48139896988868713
+      ]
+    ]
+  },
+  {
+    "id": 35,
+    "sentence": "I bought the Pro model. It's fast, but it overheats after ten minutes.",
+    "aspects": [],
+    "sentiments": [],
+    "positions": [],
+    "positive": [],
+    "negative": [],
+    "confidence": [],
+    "probs": []
+  },
+  {
+    "id": 36,
+    "sentence": "The earbuds connect instantly. They drop on calls though, which is annoying.",
+    "aspects": [
+      "earbuds",
+      "calls"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        3
+      ]
+    ],
+    "positive": [
+      "The earbuds connect instantly"
+    ],
+    "negative": [
+      "They drop on calls"
+    ],
+    "confidence": [
+      0.9967,
+      0.9935
+    ],
+    "probs": [
+      [
+        0.0015332427574321628,
+        0.0017381298821419477,
+        0.9967286586761475
+      ],
+      [
+        0.99346923828125,
+        0.002265934832394123,
+        0.004264796618372202
+      ]
+    ]
+  },
+  {
+    "id": 37,
+    "sentence": "I tried the stylus; its latency is fine, its palm rejection isn't.",
+    "aspects": [
+      "stylus",
+      "latency",
+      "palm rejection"
+    ],
+    "sentiments": [
+      "Positive",
+      "Positive",
+      "Positive"
+    ],
+    "positions": [
+      [
+        3
+      ],
+      [
+        1
+      ],
+      [
+        6,
+        7
+      ]
+    ],
+    "positive": [
+      "I tried the stylus",
+      "its latency is fine",
+      "its palm rejection isn ' t"
+    ],
+    "negative": [],
+    "confidence": [
+      0.5142,
+      0.9592,
+      0.7177
+    ],
+    "probs": [
+      [
+        0.0318622924387455,
+        0.453963041305542,
+        0.5141746997833252
+      ],
+      [
+        0.011307910084724426,
+        0.0295273307710886,
+        0.9591646790504456
+      ],
+      [
+        0.23632460832595825,
+        0.045983824878931046,
+        0.7176916599273682
+      ]
+    ]
+  },
+  {
+    "id": 38,
+    "sentence": "The webcam is wide. It makes faces look distorted and the colors look sickly.",
+    "aspects": [
+      "webcam",
+      "faces",
+      "colors"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        2
+      ],
+      [
+        1
+      ]
+    ],
+    "positive": [
+      "The webcam is wide"
+    ],
+    "negative": [
+      "It makes faces look distorted",
+      "the colors look sickly"
+    ],
+    "confidence": [
+      0.6935,
+      0.9947,
+      0.9867
+    ],
+    "probs": [
+      [
+        0.20890003442764282,
+        0.09761720895767212,
+        0.6934827566146851
+      ],
+      [
+        0.9947064518928528,
+        0.0018092565005645156,
+        0.0034843017347157
+      ],
+      [
+        0.9867138266563416,
+        0.004145770333707333,
+        0.009140273556113243
+      ]
+    ]
+  },
+  {
+    "id": 39,
+    "sentence": "The dock seemed sturdy. It bent anyway.",
+    "aspects": [
+      "dock"
+    ],
+    "sentiments": [
+      "Positive"
+    ],
+    "positions": [
+      [
+        1
+      ]
+    ],
+    "positive": [
+      "The dock seemed sturdy"
+    ],
+    "negative": [],
+    "confidence": [
+      0.9777
+    ],
+    "probs": [
+      [
+        0.017111830413341522,
+        0.0051652113907039165,
+        0.9777230024337769
+      ]
+    ]
+  },
+  {
+    "id": 40,
+    "sentence": "Fantastic battery—if you never turn it on.",
+    "aspects": [
+      "battery"
+    ],
+    "sentiments": [
+      "Positive"
+    ],
+    "positions": [
+      [
+        1
+      ]
+    ],
+    "positive": [
+      "Fantastic battery — if you never turn it on"
+    ],
+    "negative": [],
+    "confidence": [
+      0.9707
+    ],
+    "probs": [
+      [
+        0.01775951497256756,
+        0.011521842330694199,
+        0.9707186818122864
+      ]
+    ]
+  },
+  {
+    "id": 41,
+    "sentence": "The camera is “pro-grade”, sure, in daylight only.",
+    "aspects": [
+      "camera"
+    ],
+    "sentiments": [
+      "Positive"
+    ],
+    "positions": [
+      [
+        1
+      ]
+    ],
+    "positive": [
+      "The camera is “ pro - grade ”"
+    ],
+    "negative": [],
+    "confidence": [
+      0.6642
+    ],
+    "probs": [
+      [
+        0.2080690562725067,
+        0.12777027487754822,
+        0.6641607284545898
+      ]
+    ]
+  },
+  {
+    "id": 42,
+    "sentence": "The AI assistant is helpful… when it actually listens.",
+    "aspects": [
+      "AI assistant"
+    ],
+    "sentiments": [
+      "Positive"
+    ],
+    "positions": [
+      [
+        1,
+        2
+      ]
+    ],
+    "positive": [
+      "The AI assistant is helpful … when it actually listens"
+    ],
+    "negative": [],
+    "confidence": [
+      0.9679
+    ],
+    "probs": [
+      [
+        0.014809425920248032,
+        0.017332179471850395,
+        0.9678584337234497
+      ]
+    ]
+  },
+  {
+    "id": 43,
+    "sentence": "Lovely screen protector that scratches if you breathe on it.",
+    "aspects": [
+      "screen protector"
+    ],
+    "sentiments": [
+      "Positive"
+    ],
+    "positions": [
+      [
+        1,
+        2
+      ]
+    ],
+    "positive": [
+      "Lovely screen protector that scratches if you breathe on it"
+    ],
+    "negative": [],
+    "confidence": [
+      0.5378
+    ],
+    "probs": [
+      [
+        0.4558548927307129,
+        0.006342413369566202,
+        0.5378026366233826
+      ]
+    ]
+  },
+  {
+    "id": 44,
+    "sentence": "The “silent” fan screams in performance mode.",
+    "aspects": [
+      "performance"
+    ],
+    "sentiments": [
+      "Positive"
+    ],
+    "positions": [
+      [
+        7
+      ]
+    ],
+    "positive": [
+      "The “ silent ” fan screams in performance mode"
+    ],
+    "negative": [],
+    "confidence": [
+      0.5461
+    ],
+    "probs": [
+      [
+        0.10872441530227661,
+        0.34516823291778564,
+        0.546107292175293
+      ]
+    ]
+  },
+  {
+    "id": 45,
+    "sentence": "The VPN is stable; nevertheless, the kill switch fails silently.",
+    "aspects": [
+      "VPN",
+      "kill switch"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        3,
+        4
+      ]
+    ],
+    "positive": [
+      "The VPN is stable"
+    ],
+    "negative": [
+      "nevertheless, the kill switch fails silently"
+    ],
+    "confidence": [
+      0.9949,
+      0.9815
+    ],
+    "probs": [
+      [
+        0.0026445481926202774,
+        0.002482513664290309,
+        0.9948728680610657
+      ],
+      [
+        0.981505811214447,
+        0.008912850171327591,
+        0.009581444784998894
+      ]
+    ]
+  },
+  {
+    "id": 46,
+    "sentence": "Storage is ample; notwithstanding the claim, read speeds are mediocre.",
+    "aspects": [
+      "Storage",
+      "read speeds"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        0
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "positive": [
+      "Storage is ample"
+    ],
+    "negative": [
+      "read speeds are mediocre"
+    ],
+    "confidence": [
+      0.9876,
+      0.9766
+    ],
+    "probs": [
+      [
+        0.0025592853780835867,
+        0.009808133356273174,
+        0.9876325130462646
+      ],
+      [
+        0.9765598177909851,
+        0.0043782819993793964,
+        0.019061865285038948
+      ]
+    ]
+  },
+  {
+    "id": 47,
+    "sentence": "The stand is adjustable; conversely, the clamp slips under pressure.",
+    "aspects": [
+      "stand",
+      "clamp"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        3
+      ]
+    ],
+    "positive": [
+      "The stand is adjustable"
+    ],
+    "negative": [
+      "the clamp slips under pressure"
+    ],
+    "confidence": [
+      0.5952,
+      0.9934
+    ],
+    "probs": [
+      [
+        0.13411010801792145,
+        0.2707386314868927,
+        0.5951513051986694
+      ],
+      [
+        0.9933727979660034,
+        0.0024461622815579176,
+        0.004181053023785353
+      ]
+    ]
+  },
+  {
+    "id": 48,
+    "sentence": "The firmware ships weekly; ergo, bugs ship weekly.",
+    "aspects": [
+      "firmware"
+    ],
+    "sentiments": [
+      "Positive"
+    ],
+    "positions": [
+      [
+        1
+      ]
+    ],
+    "positive": [
+      "The firmware ships weekly"
+    ],
+    "negative": [],
+    "confidence": [
+      0.6056
+    ],
+    "probs": [
+      [
+        0.2103428840637207,
+        0.1840457320213318,
+        0.6056113243103027
+      ]
+    ]
+  },
+  {
+    "id": 49,
+    "sentence": "The BIOS is modern; yet, PXE boot is broken.",
+    "aspects": [
+      "BIOS",
+      "boot"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        3
+      ]
+    ],
+    "positive": [
+      "The BIOS is modern"
+    ],
+    "negative": [
+      "yet, PXE boot is broken"
+    ],
+    "confidence": [
+      0.9849,
+      0.9866
+    ],
+    "probs": [
+      [
+        0.005857022479176521,
+        0.009199691005051136,
+        0.9849432706832886
+      ],
+      [
+        0.986646294593811,
+        0.007042626850306988,
+        0.006311067845672369
+      ]
+    ]
+  },
+  {
+    "id": 50,
+    "sentence": "Speakers are great—bass is thin—treble is harsh.",
+    "aspects": [
+      "Speakers",
+      "bass",
+      "treble"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative",
+      "Negative"
+    ],
+    "positions": [
+      [
+        0
+      ],
+      [
+        4
+      ],
+      [
+        8
+      ]
+    ],
+    "positive": [
+      "Speakers are great — bass is thin — treble is harsh"
+    ],
+    "negative": [
+      "Speakers are great — bass is thin — treble is harsh"
+    ],
+    "confidence": [
+      0.9792,
+      0.8905,
       0.9818
     ],
     "probs": [
       [
-        0.005911807995289564,
-        0.7288693189620972,
-        0.2652188539505005
+        0.0187161136418581,
+        0.00203777221031487,
+        0.9792461395263672
       ],
       [
-        0.006678014062345028,
-        0.18879087269306183,
-        0.8045311570167542
+        0.8905290961265564,
+        0.004804785829037428,
+        0.10466606914997101
       ],
       [
-        0.9817602038383484,
-        0.004038727842271328,
-        0.014201064594089985
+        0.9817683696746826,
+        0.0036261137574911118,
+        0.014605464413762093
+      ]
+    ]
+  },
+  {
+    "id": 51,
+    "sentence": "Battery life is okay… camera? 🤷‍♂️",
+    "aspects": [
+      "Battery life",
+      "camera ?"
+    ],
+    "sentiments": [
+      "Positive",
+      "Neutral"
+    ],
+    "positions": [
+      [
+        0,
+        1
+      ],
+      [
+        5,
+        6
+      ]
+    ],
+    "positive": [
+      "Battery life is okay … camera"
+    ],
+    "negative": [],
+    "confidence": [
+      0.8097,
+      0.4552
+    ],
+    "probs": [
+      [
+        0.020600005984306335,
+        0.16966450214385986,
+        0.8097354769706726
+      ],
+      [
+        0.13442258536815643,
+        0.4552042782306671,
+        0.41037312150001526
+      ]
+    ]
+  },
+  {
+    "id": 52,
+    "sentence": "Touch is responsive — except near the edges.",
+    "aspects": [
+      "Touch"
+    ],
+    "sentiments": [
+      "Positive"
+    ],
+    "positions": [
+      [
+        0
+      ]
+    ],
+    "positive": [
+      "Touch is responsive — except near the edges"
+    ],
+    "negative": [],
+    "confidence": [
+      0.9824
+    ],
+    "probs": [
+      [
+        0.01108363177627325,
+        0.006535206455737352,
+        0.9823811650276184
+      ]
+    ]
+  },
+  {
+    "id": 53,
+    "sentence": "Screen is 120 Hz; scrolling still feels jittery.",
+    "aspects": [
+      "Screen",
+      "scrolling"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        0
+      ],
+      [
+        0
+      ]
+    ],
+    "positive": [
+      "Screen is 120 Hz"
+    ],
+    "negative": [
+      "scrolling"
+    ],
+    "confidence": [
+      0.5215,
+      0.9921
+    ],
+    "probs": [
+      [
+        0.1647273302078247,
+        0.3137567639350891,
+        0.5215159058570862
+      ],
+      [
+        0.9921209812164307,
+        0.0024525271728634834,
+        0.005426425952464342
+      ]
+    ]
+  },
+  {
+    "id": 54,
+    "sentence": "The mic is clear; sibilance (“s”) sounds bitey.",
+    "aspects": [
+      "mic"
+    ],
+    "sentiments": [
+      "Positive"
+    ],
+    "positions": [
+      [
+        1
+      ]
+    ],
+    "positive": [
+      "The mic is clear"
+    ],
+    "negative": [],
+    "confidence": [
+      0.9954
+    ],
+    "probs": [
+      [
+        0.002047021873295307,
+        0.0025179125368595123,
+        0.9954350590705872
+      ]
+    ]
+  },
+  {
+    "id": 55,
+    "sentence": "La batería dura poco, pero la cámara es excelente.",
+    "aspects": [
+      "batería",
+      "cámara"
+    ],
+    "sentiments": [
+      "Negative",
+      "Positive"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        7
+      ]
+    ],
+    "positive": [
+      "pero la cámara es excelente"
+    ],
+    "negative": [
+      "La batería dura poco"
+    ],
+    "confidence": [
+      0.9752,
+      0.9835
+    ],
+    "probs": [
+      [
+        0.9751537442207336,
+        0.008097038604319096,
+        0.016749156638979912
+      ],
+      [
+        0.015324404463171959,
+        0.001196090946905315,
+        0.9834794998168945
+      ]
+    ]
+  },
+  {
+    "id": 56,
+    "sentence": "El teclado es cómodo; sin embargo, el trackpad falla a veces.",
+    "aspects": [
+      "teclado",
+      "trackpad"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        4
+      ]
+    ],
+    "positive": [
+      "El teclado es cómodo"
+    ],
+    "negative": [
+      "el trackpad falla a veces"
+    ],
+    "confidence": [
+      0.9975,
+      0.9923
+    ],
+    "probs": [
+      [
+        0.0015161968767642975,
+        0.0009681571391411126,
+        0.9975156784057617
+      ],
+      [
+        0.9922516942024231,
+        0.0023867753334343433,
+        0.0053614964708685875
+      ]
+    ]
+  },
+  {
+    "id": 57,
+    "sentence": "La pantalla es brillante y nítida, aunque el software se cuelga.",
+    "aspects": [
+      "pantalla",
+      "software"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        9
+      ]
+    ],
+    "positive": [
+      "La pantalla es brillante y nítida"
+    ],
+    "negative": [
+      "aunque el software se cuelga"
+    ],
+    "confidence": [
+      0.9934,
+      0.9435
+    ],
+    "probs": [
+      [
+        0.005390951409935951,
+        0.001214792369864881,
+        0.9933943152427673
+      ],
+      [
+        0.9434968829154968,
+        0.015529130585491657,
+        0.04097405821084976
+      ]
+    ]
+  },
+  {
+    "id": 58,
+    "sentence": "La carga rápida funciona, pero el teléfono se calienta demasiado.",
+    "aspects": [
+      "carga"
+    ],
+    "sentiments": [
+      "Positive"
+    ],
+    "positions": [
+      [
+        1
+      ]
+    ],
+    "positive": [
+      "La carga rápida funciona"
+    ],
+    "negative": [],
+    "confidence": [
+      0.9605
+    ],
+    "probs": [
+      [
+        0.037409454584121704,
+        0.0021200270857661963,
+        0.9604704976081848
+      ]
+    ]
+  },
+  {
+    "id": 59,
+    "sentence": "El altavoz está bien; los graves, no.",
+    "aspects": [
+      "altavoz",
+      "graves"
+    ],
+    "sentiments": [
+      "Positive",
+      "Negative"
+    ],
+    "positions": [
+      [
+        1
+      ],
+      [
+        1
+      ]
+    ],
+    "positive": [
+      "El altavoz está bien"
+    ],
+    "negative": [
+      "los graves"
+    ],
+    "confidence": [
+      0.9153,
+      0.4833
+    ],
+    "probs": [
+      [
+        0.05057975649833679,
+        0.03416537865996361,
+        0.9152548313140869
+      ],
+      [
+        0.48327213525772095,
+        0.0849519595503807,
+        0.43177586793899536
       ]
     ]
   }

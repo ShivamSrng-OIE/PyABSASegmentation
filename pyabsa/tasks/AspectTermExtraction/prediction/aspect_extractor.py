@@ -34,6 +34,170 @@ from ..dataset_utils.__lcf__.data_utils_for_inference import (
 from ..dataset_utils.__lcf__.data_utils_for_training import split_aspect
 from ..models import ATEPCModelList
 
+# ----- Sentence splitting (wtpsplit SaT with safe fallback) -----
+try:
+    from wtpsplit import SaT
+    _HAS_SAT = True
+except Exception:
+    _HAS_SAT = False
+
+MERGE_CONJ = {"and", "&", ","}
+HARD_CONNECTORS = {"but", "however", "yet", "although", "though", ";", ","}
+
+def _merge_coordinated_aspect_snippets(item_dict, pol_snips, include_connector=True):
+    """
+    Merge snippets for coordinated aspects with the same sentiment, e.g.:
+      'The camera and lens are excellent' -> one positive snippet
+    instead of two ('The camera', 'lens are excellent').
+
+    item_dict fields used: tokens, aspect, sentiment, position
+    pol_snips: {"positive": [...], "negative": [...]}
+    """
+    tokens = item_dict.get("tokens") or []
+    aspects = item_dict.get("aspect") or []
+    sentiments = item_dict.get("sentiment") or []
+    positions = item_dict.get("position") or []
+
+    if not tokens or not aspects or not sentiments or not positions:
+        return pol_snips
+
+    # Build normalized spans for each aspect
+    spans = []
+    for i, pos in enumerate(positions):
+        if not pos:
+            continue
+        if isinstance(pos, list):
+            start = min(pos)
+            end = max(pos)
+        else:
+            start = end = int(pos)
+        spans.append({
+            "idx": i,
+            "start": start,
+            "end": end,
+            "sent": (sentiments[i] or "").lower(),
+        })
+
+    # Sort spans by start
+    spans.sort(key=lambda x: x["start"])
+
+    merged_ranges = []   # list of (start_idx, end_idx, sentiment)
+    i = 0
+    n = len(spans)
+    while i < n:
+        j = i
+        cur_sent = spans[i]["sent"]
+        left = spans[i]["start"]
+        right = spans[i]["end"]
+
+        # attempt to expand group to the right while:
+        #  - same sentiment
+        #  - between spans we only see a coordinator like 'and' / '&' / ',' (no 'but', 'however', etc.)
+        #  - no hard contrast connector appears between
+        while j + 1 < n and spans[j + 1]["sent"] == cur_sent:
+            gap_l = spans[j]["end"]
+            gap_r = spans[j + 1]["start"]
+            between = [t.lower() for t in tokens[gap_l:gap_r+1]]
+
+            # stop if any hard connector sits in between (contrast boundary)
+            if any(w in {"but", "however", "yet", ";"} for w in between):
+                break
+            # must have a coordinating token like 'and', '&', or a bare comma
+            if not any(w in MERGE_CONJ for w in between):
+                break
+
+            # ok, we can merge with the next span
+            j += 1
+            right = spans[j]["end"]
+
+        # if a group larger than 1 span was formed, create one merged range
+        if j > i:
+            merged_ranges.append((left, right, cur_sent))
+            i = j + 1
+        else:
+            i += 1
+
+    if not merged_ranges:
+        return pol_snips  # nothing to merge
+
+    # Build merged snippets, extending to the predicate and stopping at punctuation/contrast
+    def _extend_right_to_predicate(r):
+        R = r
+        # stop at first hard connector or comma/semicolon that likely ends the predicate
+        for k in range(r, len(tokens)):
+            w = tokens[k].lower()
+            if w in {"but", "however", "yet"} or w in {",", ";"}:
+                return k - 1 if not include_connector else k
+        return len(tokens) - 1
+
+    def _extend_left_article(l):
+        L = l
+        # include preceding determiner/article if present
+        if L - 1 >= 0 and tokens[L-1].lower() in {"the", "a", "an", "this", "that", "these", "those"}:
+            L = L - 1
+        return max(0, L)
+
+    pos_merged, neg_merged = set(pol_snips.get("positive", [])), set(pol_snips.get("negative", []))
+
+    for L, R, sent in merged_ranges:
+        L2 = _extend_left_article(L)
+        R2 = _extend_right_to_predicate(R)
+        snippet = " ".join(tokens[L2:R2+1]).strip()
+
+        if sent.startswith("pos"):
+            # remove sub-snippets that are contained in the merged one
+            to_remove = [s for s in pos_merged if s and s in snippet]
+            for s in to_remove:
+                pos_merged.discard(s)
+            pos_merged.add(snippet)
+        elif sent.startswith("neg"):
+            to_remove = [s for s in neg_merged if s and s in snippet]
+            for s in to_remove:
+                neg_merged.discard(s)
+            neg_merged.add(snippet)
+
+    return {"positive": list(pos_merged), "negative": list(neg_merged)}
+
+_SPLITTER = None
+def _get_splitter():
+    global _SPLITTER
+    if _SPLITTER is not None:
+        return _SPLITTER
+    if _HAS_SAT:
+        try:
+            sat = SaT("sat-3l-sm")
+            try:
+                sat = sat.half()
+            except Exception:
+                pass
+            try:
+                if torch.cuda.is_available():
+                    sat = sat.to("cuda")
+            except Exception:
+                pass
+            _SPLITTER = ("sat", sat)
+            return _SPLITTER
+        except Exception:
+            pass
+    # Fallback: simple connector/punctuation-based split
+    CONNECTORS = ["; however ,", "however ,", "; however,", "however,", " but ", " yet ", ";", ".", " and "]
+    def _fallback_split(text: str):
+        tmp = text
+        for c in CONNECTORS:
+            tmp = tmp.replace(c, "|")
+        parts = [cl.strip() for cl in tmp.split("|")]
+        return [cl for cl in parts if cl]
+    _SPLITTER = ("fallback", _fallback_split)
+    return _SPLITTER
+
+def _split_into_clauses(text: str):
+    kind, sp = _get_splitter()
+    if kind == "sat":
+        return sp.split([text])[0]
+    else:
+        return sp(text)
+# ---------------------------------------------------------------
+
 
 # ----------------------- NEW: helper for aspect-centric windows -----------------------
 def _aspect_windows_by_polarity(item, window=5, include_connector=True):
@@ -484,28 +648,129 @@ class AspectExtractor(InferenceModel):
         )
 
     def predict(
-        self,
-        text: Union[str, List[str]],
+    self,
+        text,
         save_result=True,
         print_result=True,
         pred_sentiment=True,
         **kwargs
     ):
         """
-        Args:
-            text (str): input example
-            save_result (bool): whether to save the result to file
-            print_result (bool): whether to print the result to console
-            pred_sentiment (bool): whether to predict sentiment
+        Single string:
+        - Split into clauses (wtpsplit SaT if available, else a simple fallback)
+        - Run ATEPC per clause via batch_predict
+        - Merge clause-level outputs back into one record
+
+        List[str]:
+        - Unchanged: delegate to batch_predict
         """
+
+        # ---------- Local, no-global splitter helpers (no name collisions) ----------
+        def _get_sat_local():
+            try:
+                from wtpsplit import SaT
+            except Exception:
+                return None
+            try:
+                sat = SaT("sat-3l-sm")
+                try:
+                    sat = sat.half()
+                except Exception:
+                    pass
+                try:
+                    import torch
+                    if torch.cuda.is_available():
+                        sat = sat.to("cuda")
+                except Exception:
+                    pass
+                return sat
+            except Exception:
+                return None
+
+        def _split_clauses_local(s: str):
+            # try SaT first
+            sat = _get_sat_local()
+            if sat is not None:
+                try:
+                    # SaT API: split([text]) -> [list_of_sentences]
+                    return sat.split([s])[0]
+                except Exception:
+                    pass
+            # fallback: light rule-based split
+            tmp = s
+            for sep in ["; however,", "however,", " but ", " yet ", ";", ".", " and "]:
+                tmp = tmp.replace(sep, "|")
+            parts = [p.strip() for p in tmp.split("|")]
+            return [p for p in parts if p]
+        # ---------------------------------------------------------------------------
+
+        # If a single string, split and merge
         if isinstance(text, str):
-            return self.batch_predict(
-                [text], save_result, print_result, pred_sentiment, **kwargs
-            )[0]
-        elif isinstance(text, list):
-            return self.batch_predict(
-                text, save_result, print_result, pred_sentiment, **kwargs
+            # Clause segmentation (purely local, cannot collide with model attrs)
+            clauses = _split_clauses_local(text)
+            if not clauses:
+                clauses = [text]
+
+            # Run ATEPC per clause; rely on existing, working pipeline
+            clause_results = self.batch_predict(
+                clauses,
+                save_result=False,
+                print_result=False,
+                pred_sentiment=pred_sentiment,
+                **kwargs,
             )
+
+            # Merge fields back into one record
+            merged = {
+                "sentence": text,
+                "aspect": [],
+                "position": [],
+                "sentiment": [],
+                "probs": [],
+                "confidence": [],
+                "tokens": [],
+                "clauses": clause_results,  # keep per-clause outputs for debugging
+            }
+
+            for co in clause_results:
+                if not isinstance(co, dict):
+                    continue
+                # capture first available tokens for convenience
+                if not merged["tokens"] and co.get("tokens"):
+                    merged["tokens"] = co.get("tokens", [])
+                merged["aspect"].extend(co.get("aspect", []) or [])
+                merged["position"].extend(co.get("position", []) or [])
+                merged["sentiment"].extend(co.get("sentiment", []) or [])
+                merged["probs"].extend(co.get("probs", []) or [])
+                merged["confidence"].extend(co.get("confidence", []) or [])
+
+            # Combine clause snippets if merge_result added them
+            pos_all, neg_all = [], []
+            for co in clause_results:
+                if isinstance(co, dict):
+                    pos_all.extend(co.get("positive", []) or [])
+                    neg_all.extend(co.get("negative", []) or [])
+            merged["positive"] = pos_all
+            merged["negative"] = neg_all
+
+            if print_result:
+                import json as _json
+                print(_json.dumps(merged, indent=2, ensure_ascii=False))
+            if save_result:
+                import json as _json
+                with open("atepc_inference.json", "w", encoding="utf8") as f:
+                    f.write(_json.dumps([merged], indent=2, ensure_ascii=False))
+            return merged
+
+        # If a list[str], keep original behavior
+        return self.batch_predict(
+            text,
+            save_result=save_result,
+            print_result=print_result,
+            pred_sentiment=pred_sentiment,
+            **kwargs,
+        )
+
 
     def batch_predict(
         self,
@@ -581,7 +846,7 @@ class AspectExtractor(InferenceModel):
                     )
                 )
                 with open(save_path, "w", encoding="utf8") as f:
-                    json.dump(results, f, ensure_ascii=False)
+                    json.dump(results, f, ensure_ascii=False, indent=2)
             if print_result:
                 for ex_id, r in enumerate(results):
                     colored_text = r["sentence"][:]

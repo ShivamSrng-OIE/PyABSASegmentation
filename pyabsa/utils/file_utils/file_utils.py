@@ -117,7 +117,7 @@ def save_json(data, file_path, **kwargs):
     Save data to a json file.
     """
     with open(file_path, "w", encoding="utf-8") as f:
-        json.dump(data, f, **kwargs)
+        json.dump(data, f, **kwargs, indent=2)
 
 
 def save_excel(data, file_path, **kwargs):

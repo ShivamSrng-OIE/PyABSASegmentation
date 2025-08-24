@@ -49,7 +49,7 @@ class USATrainingDataset:
         #                 + "}",
         #             }
         #         )
-        #     json.dump(new_all_data, f, indent=4, sort_keys=True)
+        #     json.dump(new_all_data, f, indent=4, sort_keys=True, indent=2)
 
         huggingface_dataset = DatasetDict(
             {self.dataset_type: Dataset.from_pandas(pd.DataFrame(all_data))}

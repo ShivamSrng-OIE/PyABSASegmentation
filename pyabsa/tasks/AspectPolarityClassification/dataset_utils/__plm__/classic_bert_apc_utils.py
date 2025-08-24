@@ -338,7 +338,7 @@ def is_similar(s1, s2, tokenizer, similarity_threshold):
 
 def configure_spacy_model(config):
     if not hasattr(config, "spacy_model"):
-        config.spacy_model = "en_core_web_sm"
+        config.spacy_model = "en_core_web_lg"
     global nlp
     try:
         nlp = spacy.load(config.spacy_model)
@@ -369,7 +369,7 @@ def calculate_dep_dist(sentence, aspect):
         doc = nlp(sentence)
     except NameError as e:
         raise RuntimeError(
-            "Fail to load nlp model, maybe you forget to download en_core_web_sm"
+            "Fail to load nlp model, maybe you forget to download en_core_web_lg"
         )
     # Load spacy's dependency tree into a networkx graph
     edges = []

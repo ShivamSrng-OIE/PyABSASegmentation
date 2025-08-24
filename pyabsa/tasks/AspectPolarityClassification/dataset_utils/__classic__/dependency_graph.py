@@ -32,7 +32,7 @@ class WhitespaceTokenizer(object):
 
 def configure_spacy_model(config):
     if not hasattr(config, "spacy_model"):
-        config.spacy_model = "en_core_web_sm"
+        config.spacy_model = "en_core_web_lg"
     global nlp
     try:
         nlp = spacy.load(config.spacy_model)
